@@ -8,7 +8,11 @@ export const create = ({ body }, res, next) => {
 }
 
 export const read = ({ querymen: { query, cursor } }, res, next) => {
-  Post.find(query).then(response => {
+  Post.find(query)
+  .limit(cursor.limit)
+  .skip(cursor.skip)
+  .sort(cursor.sort)
+  .then(response => {
     const posts = response.map(post => post.view());
     res.json({posts})
   }).catch(next);

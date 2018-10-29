@@ -33,12 +33,14 @@ export const login = ({body}, res, next) => {
 export const clientAuth = ({body}, res, next) => {
   Application.find({clientID: body.clientID}).then(apps => {
     const app = apps[0];
-    if(app.secretID === body.secretID)
-      sign(app.id)
-      .then((token) => ({ token, app: app.view() }))
-      .then((data) => res.status(201).json(data))
-      .catch(next)
-    else
-      res.status(401).json({msg: "There's something wrong with your keys"});
-  })
+    if(app) {
+      if(app.secretID === body.secretID)
+        sign(app.id)
+        .then((token) => ({ token, app: app.view() }))
+        .then((data) => res.status(201).json(data))
+        .catch(next)
+      else
+        res.status(401).json({msg: "There's something wrong with your keys"});
+    }
+  }).catch(next());
 }

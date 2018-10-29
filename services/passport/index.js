@@ -19,14 +19,16 @@ export const token = ({ required, roles = User.roles } = {}) => (req, res, next)
     })
   })(req, res, next)
 
-export const application = ({ required, roles = User.roles } = {}) => (req, res, next) =>
+export const application = ({ required, callback } = {}) => (req, res, next) =>
   passport.authenticate('application', { session: false }, (err, app, info) => {
     if (err || (required && !app)) {
-      return res.status(401).end()
+      next()
     }
     req.logIn(app, { session: false }, (err) => {
       if (err) return res.status(401).end()
-      next()
+      if(app) {
+        callback(req, res, next)
+      }
     })
   })(req, res, next)
 

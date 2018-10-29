@@ -8,19 +8,22 @@ export Post, { schema } from './model';
 const router = new Router()
 
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
   query(),
+  application({ required: true, callback: read }),
+  token({ required: true }),
   read)
 
 router.get('/:id',
+  application({ required: true, callback: show }),
+  token({ required: true }),
   show)
 
 router.post('/',
-  token({required: true, roles: ['admin']}),
+  token({ required: true, roles: ['admin'] }),
   create);
 
 router.put('/:id',
-  token({ required: true, roles: ['admin']}),
+  token({ required: true, roles: ['admin'] }),
   update);
 
 
