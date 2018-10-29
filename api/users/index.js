@@ -25,7 +25,9 @@ router.post('/',
   create);
 
 
-router.post('/first-admin', master(), createAdmin)
+router.post('/first-admin',
+  master(),
+  createAdmin)
 
 router.put('/:id',
   token({ required: true, roles: ['admin']}),
