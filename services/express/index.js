@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import multiparty from 'connect-multiparty';
 import morgan from 'morgan';
+import path from 'path';
 
 export default (apiRoot, routes) => {
   const app = express();
@@ -12,6 +13,7 @@ export default (apiRoot, routes) => {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     next();
   });
+  app.use(express.static(`${path.resolve()}/client/build`));
   app.use(morgan('dev'));
   app.use(cookieParser());
   app.use(bodyParser.urlencoded({ extended: false }));
