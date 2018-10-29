@@ -11,7 +11,7 @@
     <div style="margin-top: 10%;" class="ui grid middle aligned center aligned">
       <div class="six wide column">
         <h2 style="color: #fff">You need to setup your first admin user</h2>
-        <form id="form" class="ui form segment" method="POST">
+        <form id="form" class="ui form segment" method="POST" action="/api/users/first-admin" >
           <div class="field">
             <label>Master Key</label>
             <input type="text" name="access_token" placeholder="6a204bd89f3c8348af" required>
@@ -34,25 +34,6 @@
     </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-      const form = $('#form')[0];
-      const sub = $('#sub');
-  
-      sub.click(function(e) {
-        console.log(e)
-        e.preventDefault();
-        const data = new FormData(form);
-        fetch('/api/users/first-admin', {
-          method: 'POST',
-          body: data
-        }).then(response => {
-          if(response.ok){
-            window.location.reload();
-          }
-        });
-      })
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.js"></script>
-
 </body>
 </html>

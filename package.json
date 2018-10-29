@@ -13,7 +13,6 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "^6.26.0",
-    "bcrypt": "^3.0.1",
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
     "connect-multiparty": "^2.2.0",
@@ -35,6 +34,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "bcrypt": "^3.0.0",
     "nodemon": "^1.18.4"
   }
 }
