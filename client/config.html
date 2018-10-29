@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css">
+  <title>Config Keymistry</title>
+</head>
+<body style="background:#8c0096">
+    <div style="margin-top: 10%;" class="ui grid middle aligned center aligned">
+      <div class="six wide column">
+        <h2 style="color: #fff">You need to setup your first admin user</h2>
+        <form class="ui form segment" method="POST" action="/api/users/first-admin">
+          <div class="field">
+            <label>Master Key</label>
+            <input type="text" name="access_token" placeholder="6a204bd89f3c8348af" required>
+          </div>
+          <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Jhon Doe" required>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="jhondoe@email.com" required>
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="********" required>
+          </div>
+          <button type="submit" style="background:#8c0096; color: #fff"class="ui fluid large submit button">Setup</button>
+        </form>
+      </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.js"></script>
+</body>
+</html>

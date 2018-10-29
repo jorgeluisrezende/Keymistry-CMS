@@ -1,0 +1,22 @@
+#login{
+  background: teal;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+div#grid{
+  position: fixed;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.submit{
+  background: #fff !important;
+  color: teal !important;
+}
+.greetings{
+  color: #fff;
+}
+.greetings> span {
+  font-size: 18px;
+}

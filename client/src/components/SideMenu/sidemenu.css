@@ -1,0 +1,33 @@
+#sidebar{
+  position: fixed;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background: whitesmoke;
+  border-right: 3px solid #e3e3e3;
+}
+
+.user-name{
+  margin: 8px;
+  font-weight: 600;
+}
+
+.hide-menubar{
+  width: 40px;
+  height: 40px;
+  display: flex !important;
+  border-radius: 100% !important;
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+  align-items: center;
+  position: fixed;
+  z-index: 100;
+  justify-content: center;
+}
+
+.avatar-box {
+  padding: 20px 10px 20px 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

@@ -1,0 +1,19 @@
+#page{
+  display: inline-block;
+}
+
+#sidebar-box {
+  position: fixed;
+  width: 15rem;
+  height: 100vh;
+}
+
+#main-container {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 15rem auto;
+}
+
+.content{
+  grid-column-start: 2;
+}
