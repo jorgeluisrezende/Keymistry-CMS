@@ -11,11 +11,15 @@ export default class index extends Component {
   }
 
   componentWillMount() {
-    const token = localStorage.getItem('token');
-
-    loadPosts(token).then(response => {
-      this.setState({ ...this.state, posts: response.data.posts, token });
-    });
+    try {
+      const token = localStorage.getItem('token');
+      loadPosts(token).then(response => {
+        this.setState({ ...this.state, posts: response.data.posts, token });
+      });
+    }catch(err) {
+      console.error(err)
+      window.reload();
+    }
   }
 
   deletePost(post) {

@@ -13,7 +13,7 @@ export default (apiRoot, routes) => {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
     next();
   });
-  app.use(express.static(`${path.resolve()}/client/build`));
+  app.use(express.static(`${path.resolve()}/client/`));
   app.use(morgan('dev'));
   app.use(cookieParser());
   app.use(bodyParser.urlencoded({ extended: false }));
