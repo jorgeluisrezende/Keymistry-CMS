@@ -44,5 +44,7 @@ export const clientAuth = ({body}, res, next) => {
       else
         res.status(401).json({msg: "There's something wrong with your keys"});
     }
-  }).catch(next());
+  }).catch(err => {
+    throw err
+  });
 }
