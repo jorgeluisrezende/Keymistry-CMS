@@ -38,7 +38,9 @@ export const clientAuth = ({body}, res, next) => {
         sign(app.id)
         .then((token) => ({ token, app: app.view() }))
         .then((data) => res.status(201).json(data))
-        .catch(err => console.log(err));
+        .catch(err => {
+          throw err
+        });
       else
         res.status(401).json({msg: "There's something wrong with your keys"});
     }
