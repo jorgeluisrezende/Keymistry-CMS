@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Editor from '../../components/Editor';
 import SideMenu from '../../components/SideMenu';
 import Header from '../../components/Header';
-import { getCategories, publishPost } from '../../services/apiService';
+import { getCategories, editPost, loadPost } from '../../services/apiService';
 
 export default class index extends Component {
 
@@ -10,8 +10,12 @@ export default class index extends Component {
     user: {},
     tags: [],
     token: '',
+    post: {
+      category: {}
+    },
     categories: [],
   }
+
   componentWillMount() {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user'));
@@ -19,7 +23,12 @@ export default class index extends Component {
       const categories = response.data;
       this.currentCategory = categories[0];
       this.setState({...this.state, token, categories, user});
-    })
+    });
+    loadPost(this.props.match.params.id, token).then(response => {
+      const post = response.data;
+      window.editor.root.innerHTML = post.content;
+      this.setState({...this.state, post, tags: response.data.tags})
+    }); 
   }
 
   componentDidMount() {
@@ -46,11 +55,11 @@ export default class index extends Component {
   }
 
   sendPost() {
-    const token = this.state.token;
     if(window.editor.root.innerHTML === '<p><br></p>' || this.refs.title.value === '' ) {
       window.swal("Post", "Your post or your post title cannot be empty!", "warning");
       return;
     }
+    const token = this.state.token;
     const payload = {
       status: 'waiting_publish',
       content: window.editor.root.innerHTML,
@@ -61,9 +70,9 @@ export default class index extends Component {
         name: this.currentCategory.name,
       },
       tags: this.state.tags,
-      author: this.state.user,
     } 
-    publishPost(payload, token).then(response => {
+    const id = this.props.match.params.id;
+    editPost(id, payload, token).then(response => {
       window.location.href = '/dashboard'
     })
   }
@@ -82,6 +91,7 @@ export default class index extends Component {
   }
 
   render() {
+    const { post } = this.state;
     return (
       <div id="page">
         <div id="sidebar-box">
@@ -91,29 +101,26 @@ export default class index extends Component {
           <div className="sixteen wide column content">
             <Header 
               title="Write a new Post"
-              buttonText="Publish"
+              buttonText="Save"
               buttonIcon="check"
               secundaryButton={false}
-              // secundaryButtonIcon="sticky note outline"
-              // secundaryButtonText="Save Draft"
-              // secundaryButtonClass="twitter"
               buttonAction={() => this.sendPost()}
             />
             <form className="ui form">
               <div className="fields sixteen wide column">
                 <div className="field seven wide column ">
                   <label>Title</label>
-                  <input type="text" ref="title" placeholder="Enter the title here..."/>
+                  <input type="text" ref="title" defaultValue={post.title} placeholder="Enter the title here..."/>
                 </div>
 
                 <div className="field seven wide column ">
                   <label>Cover Url</label>
-                  <input type="text" ref="cover" placeholder="Enter the post cover url here..."/>
+                  <input type="text" defaultValue={post.cover} ref="cover" placeholder="Enter the post cover url here..."/>
                 </div>
 
                 <div className="field five wide column">
                   <label>Category</label>
-                  <select className="dropdown" ref="category" onChange={this.changeCategory.bind(this)}>
+                  <select className="dropdown" defaultValue={post.category.name} ref="category" onChange={this.changeCategory.bind(this)}>
                     { this.loadCategories() }
                   </select>
                 </div>
@@ -133,7 +140,7 @@ export default class index extends Component {
             </form>
           </div>
           <div className="sixteen wide column content pd-0">
-            <Editor ref="editor"/>
+            <Editor ref="editor" />
           </div>
         </div>
       </div>

@@ -19,6 +19,10 @@ export const publishPost = (payload, token) => {
   return axios.post(`${apiRoot}/posts/`, payload, { headers: headers(token) });
 }
 
+export const editPost = (id, payload, token) => {
+  return axios.put(`${apiRoot}/posts/${id}/`, payload, { headers: headers(token) })
+}
+
 export const loadPosts = (token) => {
   return axios.get(`${apiRoot}/posts/`, { headers: headers(token) });
 }
@@ -61,6 +65,10 @@ export const deleteCategory = (id, token) => {
   return axios.delete(`${apiRoot}/categories/${id}`, {
     headers: headers(token)
   });
+}
+
+export const loadMedia = (token) => {
+  return axios.get(`${apiRoot}/media/`, {headers: headers(token)});
 }
 
 export const uploadMedia = (media, headers) => {

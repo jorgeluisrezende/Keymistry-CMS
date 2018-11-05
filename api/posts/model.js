@@ -8,6 +8,9 @@ const postSchema = new Schema({
     type: Object,
     index: true
   },
+  cover: {
+    type: String
+  },
   category: {
     type: Object,
     index: true
@@ -17,6 +20,9 @@ const postSchema = new Schema({
   },
   content: {
     type: String,
+  },
+  short_preview: {
+    type: String
   },
   status: {
     type: String
@@ -48,7 +54,8 @@ postSchema.pre('save', function(next) {
       user.save();
     });
   }
-  this.content_cleaned = removeHtml(this.content)
+  this.content_cleaned = removeHtml(this.content);
+  this.short_preview = `${this.content_cleaned.substring(0, 350)}...`;
   next();
 });
 
@@ -72,8 +79,10 @@ postSchema.methods = {
       'author',
       'status',
       'tags',
+      'short_preview',
       'title',
       'views', 
+      'cover',
       'category',
       'createdAt' 
     ];

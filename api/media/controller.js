@@ -46,8 +46,15 @@ export const create = (req, res, next) => {
 
 }
 
-export const read = ({ user, body }, res, next) => {
-
+export const read = ({ user, querymen: { query, cursor } }, res, next) => {
+  Media.find(query)
+  .limit(cursor.limit)
+  .skip(cursor.skip)
+  .then(medias => {
+    res.json(medias);
+  }).catch(err => {
+    res.status(417).json({msg: "Sorry an error has occured!"});
+  });
 }
 
 export const destroy = ({ user, body }, res, next) => {

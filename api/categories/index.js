@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { token } from '../../services/passport/';
+import { token, application } from '../../services/passport/';
 import { create, read, update, destroy } from './controller';
 import Categories, { schema } from './model';
 
@@ -8,6 +8,7 @@ export Categories, { schema } from './model';
 const router = new Router()
 
 router.get('/',
+  application({ required: true, callback: read }),
   token({ required: true }),
   read)
 

@@ -22,6 +22,10 @@ export default class index extends Component {
     }
   }
 
+  editPost(post) {
+    this.props.history.push(`/edit-post/${post.id}`);
+  }
+
   deletePost(post) {
     const token = this.state.token;
     destroyPost(post.id, token).then(response => {
