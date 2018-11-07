@@ -12,7 +12,7 @@ token({required: true, roles: ['admin']}),
 create)
 
 router.get('/',
-token({required: true, roles: ['admin']}),
+token({ required: true }),
 read);
 
 router.delete('/:id',

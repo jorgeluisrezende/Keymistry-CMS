@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SideMenu from '../../components/SideMenu';
 import Header from  '../../components/Header';
 import { createApplication, updateUser, loadApplications, destroyApplication } from '../../services/apiService';
-// import up
+
 export default class index extends Component {
   state = {
     user: {},
@@ -18,7 +18,6 @@ export default class index extends Component {
     loadApplications(token).then(response => {
       const apps = response.data;
       this.setState({...this.state, user, picture: user.picture, token, apps});
-
     })
   }
 
