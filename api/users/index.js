@@ -30,7 +30,7 @@ router.post('/first-admin',
   createAdmin)
 
 router.put('/:id',
-  token({ required: true, roles: ['admin']}),
+  token({ required: true }),
   update);
 
 router.put('/:id/password',

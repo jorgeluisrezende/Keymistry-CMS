@@ -19,11 +19,11 @@ router.get('/:id',
   show)
 
 router.post('/',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   create);
 
 router.put('/:id',
-  token({ required: true, roles: ['admin'] }),
+  token({ required: true }),
   update);
 
 
