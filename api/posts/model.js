@@ -55,7 +55,7 @@ postSchema.pre('save', function(next) {
     });
   }
   this.content_cleaned = removeHtml(this.content);
-  this.short_preview = `${this.content_cleaned.substring(0, 350)}...`;
+  this.short_preview = `${this.content_cleaned.substring(0, 500)}...`;
   next();
 });
 
@@ -97,7 +97,7 @@ postSchema.methods = {
   }
 }
 
-postSchema.plugin(mongooseKeywords, { paths: ['title', 'tags', 'content_cleaned'] })
+postSchema.plugin(mongooseKeywords, { paths: ['title', 'tags', 'short_preview'] })
 
 const model = mongoose.model('Post', postSchema);
 
