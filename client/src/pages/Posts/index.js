@@ -36,7 +36,7 @@ export default class index extends Component {
   renderTags(tags) {
     return tags.map((tag, index) => {
       return (
-        <label key={index} className="tags">{ tags }</label>
+        <label key={index} className="ui label">{ tag }</label>
       )
     })
   }
