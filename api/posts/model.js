@@ -97,7 +97,7 @@ postSchema.methods = {
   }
 }
 
-postSchema.plugin(mongooseKeywords, { paths: ['title', 'tags', 'short_preview'] })
+postSchema.plugin(mongooseKeywords, { paths: ['title', 'tags'] })
 
 const model = mongoose.model('Post', postSchema);
 
