@@ -8,7 +8,9 @@ export Post, { schema } from './model';
 const router = new Router()
 
 router.get('/',
-  query(),
+  query({
+    category: { paths: ['category.id'] }
+  }),
   application({ required: true, callback: read }),
   token({ required: true }),
   read)
